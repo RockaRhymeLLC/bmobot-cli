@@ -1,6 +1,6 @@
 {
   "name": "bmobot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "CLI for 30+ free developer APIs at bmobot.ai — hash, uuid, json, qr, color, regex, and more",
   "type": "module",
   "bin": {

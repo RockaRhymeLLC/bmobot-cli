@@ -9,8 +9,12 @@
  * Usage: bmobot <service> <action> [args...] [--flags]
  */
 
-const VERSION = '1.0.0';
-const BASE = 'https://{service}.bmobot.ai';
+const VERSION = '1.1.0';
+
+// API base URL: supports subdomain mode (default) or path-based mode (gateway)
+// Override with BMOBOT_API_URL env var (e.g., https://your-gateway.azurecontainerapps.io)
+const GATEWAY_URL = process.env.BMOBOT_API_URL || '';
+const BASE = GATEWAY_URL || 'https://{service}.bmobot.ai';
 
 // ── ANSI Colors ─────────────────────────────────────────────
 
@@ -414,8 +418,13 @@ function parseFlags(args) {
 }
 
 function buildUrl(host, path, queryParams) {
-  const base = BASE.replace('{service}', host);
-  const url = new URL(path, base);
+  let url;
+  if (GATEWAY_URL) {
+    // Path-based routing: gateway_url/api/{service}{path}
+    url = new URL(`/api/${host}${path}`, GATEWAY_URL);
+  } else {
+    url = new URL(path, BASE.replace('{service}', host));
+  }
   if (queryParams) {
     for (const [k, v] of Object.entries(queryParams)) {
       if (v != null && v !== undefined) url.searchParams.set(k, String(v));
@@ -503,6 +512,9 @@ ${color(c.bold, 'Global Flags:')}
   --raw       Output minified JSON (for piping)
   --help      Show help for a service
   --version   Show version
+
+${color(c.bold, 'Environment:')}
+  BMOBOT_API_URL  Override API base URL (for self-hosted gateways)
 
 ${color(c.dim, 'All APIs are free, no auth required. Docs: https://bmobot.ai/apis')}
 `);
