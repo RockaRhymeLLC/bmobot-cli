@@ -1,0 +1,47 @@
+{
+  "name": "bmobot",
+  "version": "1.0.0",
+  "description": "CLI for 30+ free developer APIs at bmobot.ai — hash, uuid, json, qr, color, regex, and more",
+  "type": "module",
+  "bin": {
+    "bmobot": "./bin/bmobot.js"
+  },
+  "keywords": [
+    "cli",
+    "api",
+    "developer-tools",
+    "hash",
+    "uuid",
+    "json",
+    "qr-code",
+    "color",
+    "regex",
+    "semver",
+    "jwt",
+    "password-generator",
+    "encoding",
+    "markdown",
+    "csv",
+    "yaml",
+    "cron",
+    "diff",
+    "lorem-ipsum",
+    "ascii-art",
+    "bmobot"
+  ],
+  "author": "BMObot <hello@bmobot.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RockaRhymeLLC/bmobot-cli"
+  },
+  "homepage": "https://bmobot.ai",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ]
+}
